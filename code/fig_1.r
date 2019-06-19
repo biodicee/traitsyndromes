@@ -8,22 +8,16 @@ library(reshape2)
 #library(extrafont)
 #fonctions
 
-root = "/home/sonia/Dropbox/Shared_SimonBenateau/MarinaProject/"
-setwd(root)
+source("code/functions.R")
 
-source("code/Code_Flo/FonctionsSimon2.R")
-
-#Where do I save my figures ?
-dir.create("Figures/")
-
-saveFolder <- "/Figures/"
-
-path <- 'ToFloAndSonia/sim_16-05-09/results_file/' 
+# Where do I save my figures ?
+if(!dir.exists("figures/")) dir.create("figures/")
+saveFolder <- "figures/"
 
 #figure
-pdf(paste0(root, saveFolder,"fig1.pdf",sep = ""),  width = 9, height = 4)
+pdf(paste0(saveFolder,"fig1.pdf",sep = ""),  width = 9, height = 3)
 
-layout(matrix(c(1,2,3,4), 1, 4, byrow = TRUE), widths=c(4,3,1,4), heights=c(1))
+layout(matrix(c(1,2,3,4), 1, 4, byrow = TRUE), widths=c(5,2.2,1.2,5), heights=c(1))
 
 
 ######################### 
@@ -67,7 +61,7 @@ par(mar=c(5,5,2,2))
 plot(NA, xlim = c(0,1.2), ylim =c(0,1), ann = F, axes = F, asp = 1)
 axis(1)
 axis(2, las = 2)
-mtext('A', adj = 0, cex = 1.5, at = -0.3, line = 1)
+mtext('A', adj = 0, cex = 1.5, at = -0.3, line = 0)
 
 
 points(tg~te, col = textcol[1], pch = 16, cex = 1.2)
@@ -75,24 +69,26 @@ points(qg~qe, col=textcol[2], pch=16, cex=1.2)
 #plot(tg~te, ylim=c(0,1), xlim=c(0,1.2), col=textcol[1], pch = 16, cex=1.2,cex.lab=1.5, cex.axis=1.3,
 #     xlab=expression(Water~availability~(italic(E))), ylab=expression(Early~Survival~italic(S(E,h))))
 
-mtext(side = 1, line = 2, expression(Water~availability~(italic(E))))
-mtext(side = 2, line = 2, expression(Early~Survival~italic(S(E,h))))
+mtext(side = 1, line = 3, cex = 0.8,
+      expression(water~availability~(italic(E))))
+mtext(side = 2, line = 3, cex = 0.8,
+      expression(early~survival~italic(S(E,h))))
 
 lines(seq(0,1.2, length = 120) , predict(fit_T, newdata = list(te = seq(0,1.2, length = 120))), col=textcol[1], lwd=2.5 )
 lines(seq(0,1.2, length = 120) , predict(fit_Q, newdata = list(qe = seq(0,1.2, length = 120))), col=textcol[2], lwd=2.5 )
 
 # Labels
 
-text(0.64,0.15, labels = expression(bold("Tertiary")), col=textcol[1], cex=1.2)
-text(0.64,0.10, labels = expression(bold(paste("(", h[T], "= 5.7)"))), col=textcol[1], cex=1.2)
+text(0.74,0.15, labels = expression(bold("Tertiary")), col=textcol[1], cex=1.2)
+text(0.74,0.06, labels = expression(bold(paste("(", h[T], "= 5.7)"))), col=textcol[1], cex=1.2)
 
-text(0.47,0.35, labels = expression(bold("Quaternary")),  col=textcol[2], cex=1.2)
-text(0.47,0.3, labels = expression(bold(paste("(", h[Q], "= 2.4)"))), col=textcol[2], cex=1.2)
+text(0.59,0.38, labels = expression(bold("Quaternary")),  col=textcol[2], cex=1.2)
+text(0.59,0.29, labels = expression(bold(paste("(", h[Q], "= 2.4)"))), col=textcol[2], cex=1.2)
 
 for (i in 2) # seeing other h values
   lines(surv(seq(0,1.2, length = 120),7.5,1,i)~seq(0,1.2, length = 120), lwd=2, col="grey60")
 #text(0.13,0.6, labels = expression(bold("h=1")), col="grey40", cex=1.2)
-text(0.23,0.4, labels = expression(bold("h=2")), col="grey40", cex=1.2)
+text(0.23,0.5, labels = expression(bold("h=2")), col="grey40", cex=1.2)
 
 
 
@@ -132,29 +128,28 @@ e_fac <- eo*(1 + (Qtt*(emax-eo)*f))
 
 
 plotMatH(e_fac,type = 'env', text = FALSE)
-par(new=TRUE)
+par(new=TRUE, mar=c(5,5,4,2))
 plotMatH(matrixIni,border = "white")
-mtext('B', adj = 0, cex = 1.5, at = -0.3, line = 1)
+mtext('B', adj = 0, cex = 1.5, at = -0.3, line = -1)
 
 # *. Legend
 #################
 #legend (one plot)
 plot(NA, xlim = c(0,1), ylim =c(0,1), ann = F, axes = F)
 #legend('left', legend = sort(unique(e_fac)), fill = highlight(sort(unique(e_fac)), colrange = rev(grey.colors(5)), steps = 50, range = c(0.6, 0.8)),bty = 'n', title = expression(E[ij]))
-mtext('C', adj = 0, cex = 1.5, at = -0.3, line = 1)
 
 mar = 0.6
 int = 0.02
 space <- seq(0,1-mar,length.out = 6)
-rect(0.4,space[-6]+int,0.6,space[-1]-int, col = highlight(sort(unique(e_fac)), colrange = rev(grey.colors(5)), steps = 50, range = c(0.6, 0.8)))
-text(y = (space[-6] - space[-1])/2 + space[-1], x = 0.42, sort(unique(e_fac)), pos = 2)
-text(y = (space[-6] - space[-1])/2 + space[-1], x = 0.58, seq(0,1, 0.25), pos = 4)
+rect(0.4,space[-6]+int,0.6,space[-1]-int, col = highlight(sort(unique(e_fac)), colrange = rev(grey.colors(5)), steps = 50, range = c(0.6, 0.8)), border = NA)
+text(y = (space[-6] - space[-1])/2 + space[-1], x = 0.42, sort(unique(e_fac)), pos = 2, cex = 0.9)
+text(y = (space[-6] - space[-1])/2 + space[-1], x = 0.58, seq(0,1, 0.25), pos = 4, cex = 0.9)
 text(x = 0.2, y = 1-mar+0.025, expression(E[ij]), font = 2)
 text(x = 0.8, y = 1-mar+0.025, expression(q[paste('+','|',0)[ij]]), font = 2)
 
 # C. survival
 #################
-par(mar = c(5,5,2,2))
+par(mar = c(5,5,3,2))
 h_new <- seq(2,14,length.out = 1000)
 eo = 0.6
 
@@ -166,7 +161,7 @@ a_s = 7.5
 g_s = 1
 
 
-plot(h_new,seq(0,1,length.out = 1000), type = 'n', bty = 'n', xlab = expression(paste('Trait values', (h))), ylab = 'Early survival (S(E,h))', axes = FALSE)
+plot(h_new,seq(0,1,length.out = 1000), type = 'n', bty = 'n', xlab = expression(paste('trait values ', (h))), ylab = expression(paste('early survival  ', italic(S(E,h)))), axes = FALSE, cex.lab = 1.3)
 axis(1, at = seq(2,14,4) )
 axis(2, las = TRUE, at = seq(0,1,0.5))
 
@@ -179,6 +174,7 @@ for (i in 1:5){
   stoMat[i, ] <- surv
 }
 
+mtext('C', adj = 0, cex = 1.5, at = -0.6, line =1)
 
 
 dev.off()

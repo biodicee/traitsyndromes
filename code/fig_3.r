@@ -1,61 +1,38 @@
 # Code for reproducing fig 4 on climate change scenario
 
-library(ggplot2)
-library(reshape2)
-library(gridExtra)
-library(splitstackshape)
-library(extrafont)
+#library(ggplot2)
+#library(reshape2)
+#library(gridExtra)
+#library(splitstackshape)
+#library(extrafont)
 
-root = "/home/sonia/Dropbox/Shared_SimonBenateau/MarinaProject"
+#root = "/home/sonia/Dropbox/Shared_SimonBenateau/MarinaProject"
 
-setwd(root)
+#setwd(root)
 
-source("code/Code_Flo/FonctionsSimon2.R")
-
-# results of climate-change scenario are found in 
-simname <- c('sim_16-05-09', 'sim_16-06-20')  #  'sim_16-07-05'
+source("code/functions.R")
 
 # Where do I save my figures ?
-if(!dir.exists("Figures/")) dir.create("Figures/")
-saveFolder <- "Figures/"
-
-
-path <- paste0('/ToFloAndSonia/', simname)
-
-# parameters <- rbind(read.table(paste0(root,path[1],'/parameters.txt'), header =TRUE),
-#                     read.table(paste0(root,path[2],'/parameters.txt'), header =TRUE),
-#                     read.table(paste0(root,path[3],'/parameters.txt'), header =TRUE))
-
-#traits + mean + sd
-
-# merge data from all folders |constant climate|
-folders <- paste0(root, path, '/results_file/')
+if(!dir.exists("figures/")) dir.create("figures/")
+saveFolder <- "figures/"
 
 #extractData() sequentially extracts information from all result files, which takes some time
-repDf <- extractData(folders, extH = TRUE)
+repDf <- extractData('simresults/constant/results_file/', extH = TRUE)
 repDf1 <- subset(repDf$stoDf, env == 0.6 & ho == 6.0)
 repDf2 <- ddply(repDf1, .variables = c("c","f"), meanh)
 repDf2$loss <- repDf2$countNoNA/repDf2$count*100
 
 
-# results of climate-change scenario are found in 
-simname <- 'FullClimateChangeSimuv3'
-
-# Where do I save my figures ?
-if(!dir.exists("Figures/")) dir.create("Figures/")
-saveFolder <- "Figures/"
-
-path <- paste0('/data/', simname)
-
-parameters <- read.table(paste0(root,path,'/parameters.txt'), header =TRUE)
+parameters <- read.table('simresults/change/parameters.txt', header =TRUE)
 
 #extractData() sequentially extracts information from all result files, which takes some time
-repDfC <- extractData(paste0(getwd(),path), extH = TRUE)
+repDfC <- extractData('simresults/change/results_file/', extH = TRUE)
 #filter environment
 repDfC2 <- ddply(subset(repDfC$stoDf, ho == 6.0) , .variables = c("c","f"), meanh)
 repDfC2$loss <- repDfC2$countNoNA/repDfC2$count*100
 
-setwd(root)
+
+
 
 pdf(paste0(saveFolder,"fig3.pdf"), width = 9, height = 6)
 
