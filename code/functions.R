@@ -940,8 +940,8 @@ extractData <- function(folders, extH = FALSE){
   files = c()
   for (j in 1:length(folders)){
     #get the name of all the files
-    setwd(folders[j])
-    files <- c(files, paste0(folders[j], sort(list.files())))
+    #setwd(folders[j])
+    files <- c(files, paste0(folders[j], sort(dir(folders[j]))))
   }
   interact <- setInteract()
   ini <- rep(NA, length(files))
