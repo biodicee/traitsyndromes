@@ -1,0 +1,6 @@
+Lade nötiges Paket: iterators
+Lade nötiges Paket: snow
+Warnmeldung:
+In e$fun(obj, substitute(ex), parent.frame(), e$data) :
+  already exporting variable(s): collect, delta, E_smooth, height, interact, parameters, prob, resolution, states, timesteps, width, x_to_evaluate, x_with_border
+runtime: 6351.63 minutes
