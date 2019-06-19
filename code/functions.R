@@ -762,14 +762,14 @@ plot_colscale <- function(x, # data
 }
 
 #plot matrix of h from vector of h
-plotMatH <- function (h_new, xlim = NA, ylim = NA,type = "h",border = FALSE, text = FALSE, range = NA){
+plotMatH <- function (h_new, xlim = NA, ylim = NA,type = "h",border = NA, text = FALSE, range = NA){
   if (is.na(xlim) & is.na(ylim)) xlim = ylim = sqrt(length(h_new))
   if (type == 'h') h_new[h_new == 0] <- NA
   colorPlot <- highlight(h_new, colrange = rainbow(32), steps = 50, range = c(0, 15))
   if (type == "env") colorPlot <- highlight(h_new, colrange = rev(grey.colors(5)), steps = 50, range = c(0.6, 0.8))
   if (type == "prob") colorPlot <- highlight(h_new, colrange = rev(grey.colors(50)), steps = 50, range = c(0, 1))
   if (!is.na(range[1])) colorPlot <- highlight(h_new, colrange = rev(grey.colors(50)), steps = 50, range = range)
-  par(mar = c(0, 0, 1, 0))
+  
   plot(NA,xlim = c(0,xlim), ylim = c(ylim,0),type = "n", bty = "n", ann = FALSE, axes = FALSE, asp = 1)
   rect(rep(1:xlim, ylim),rep(1:ylim, each = xlim),rep(0:(xlim-1), ylim),rep(0:(ylim-1), each = xlim), col = colorPlot, border = border)
   if(text == TRUE) text(rep(1:xlim, ylim)-0.5,rep(1:ylim, each = xlim)-0.5, h_new)
@@ -785,18 +785,17 @@ plotH <- function (xax = FALSE) {
   
   hmaxi = 15
   #set graphical options
-  par(family= 'serif', mar=c(0,6,1,0))
   
   plot(NA,NA, xlim = c(0,timesteps+5000), ylim = c(1.5,14.5), axes = F, ann = F)
   
-  axis(1,labels = NA, lwd = 1.5)
-  axis(2, las = 1, at = seq(2,14,2), labels = seq(2,14,2), lwd = 1.5, cex.axis = 1.5)
+  axis(1,labels = NA, lwd = 1.5, cex.axis = 1.2)
+  axis(2, las = 1, at = seq(2,14,4), labels = seq(2,14,4), lwd = 1.5, cex.axis = 1.2)
   
-  mtext(side = 2, line = 2.5, text = expression(Trait~values~(italic(h))), cex = 1.1)
+  mtext(side = 2, line = 2.5, text = expression(trait~values~(italic(h))), cex = 1.1)
   
   if (xax == TRUE) {
-    mtext(side = 1, line = 2.5, text = 'Time (years)', cex = 1.2)
-    axis(1, cex = 2, lwd = 1.5, cex.axis = 1.5)
+    mtext(side = 1, line = 2.5, text = 'time (years)', cex = 1.1)
+    axis(1, cex = 2, lwd = 1.5, cex.axis = 1.2)
   }
   
   #add initial environment value
@@ -825,16 +824,16 @@ plotRho  <- function () {
   
   h_unique <- lapply(result$h, unique)
   
-  par(family= 'serif', mar=c(4, 6, 0, 0))
+  par(mar=c(4, 6, 0, 0))
   
   plot(NA,NA,xlim = c(0, timesteps+5000), ylim = c(0, 0.9),
        axes = F, ann = F)#, type = 'n', xaxs = 'i', yaxs = 'i' )
   
-  axis(2, at = seq(0, 0.6, by = 0.2), las = 1, lwd = 1.5, cex.axis = 1.5)
-  axis(1, cex = 2, lwd = 1.5, cex.axis = 1.5)
+  axis(2, at = seq(0, 0.6, by = 0.2), las = 1, lwd = 1.5, cex.axis = 1.2)
+  axis(1, cex = 2, lwd = 1.5, cex.axis = 1.2)
   
   mtext(side = 2, line = 2.5, adj = 1, text = expression(plant~cover~(rho ['+'])), cex = 1.1)
-  mtext(side = 1, line = 2.5, text = 'time (years)', cex = 1.2)
+  mtext(side = 1, line = 2.5, text = 'time (years)', cex = 1.1)
   
   time = 2:(length(h_unique)+1)
   
