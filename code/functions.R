@@ -786,6 +786,8 @@ plotH <- function (xax = FALSE) {
   hmaxi = 15
   #set graphical options
   
+  par(mar=c(1, 6, 3, 0))
+  
   plot(NA,NA, xlim = c(0,timesteps+5000), ylim = c(1.5,14.5), axes = F, ann = F)
   
   axis(1,labels = NA, lwd = 1.5, cex.axis = 1.2)
