@@ -191,7 +191,6 @@ foreach(iter = parameters$ID, .combine = rbind, .export = ls(.GlobalEnv)) %dopar
   if (parms_temp$ho_type == "distri"){
   ho_ini <- rnorm(length(x_old$cells[x_old$cells == "T"]), parms_temp$ho, parms_temp$ho_step)
   } else ho_ini = parms_temp$ho
-  # TODO: this should include an option to sample ho from multiple normaldistributed pools, i.e. starting with multiple species.
 
   #make vector of h values
   h_initial <- rep(0, width*height)
