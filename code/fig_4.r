@@ -30,6 +30,8 @@ par(mar=c(1,6,1,0))
 load(paste0("simresults/change/results_file/result", parameters$ID[parameters$c_intra == 0.1 & parameters$f == 0][4]) )
 plotH()
 #ecotype labels
+text(c(rep(200000,1),100000,105000), c(2.05,9.6,7.6), tolower(as.roman(1:3)), xpd = TRUE, pos = 4)
+
 #text(c(rep(200000,4),79500,145500), c(5.2,4.25,3.3,2.1,5.4,4.5), letters[1:6], xpd = TRUE, pos = 4, font = 2)
 #label
 PlotLabel = 'A'
@@ -42,6 +44,8 @@ text(x = -28000, y = 15, PlotLabel, cex = 1.75, xpd = TRUE, pos = 2)
 load(paste0("simresults/change/results_file/result", parameters$ID[parameters$c_intra == 0 & parameters$f == 0.4][4]) )
 plotH()
 #ecotype labels
+text(c(200000), c(6.5), tolower(as.roman(4)), xpd = TRUE, pos = 4)
+
 #text(c(rep(200000,4),79500,145500), c(5.2,4.25,3.3,2.1,5.4,4.5), letters[1:6], xpd = TRUE, pos = 4, font = 2)
 #label
 PlotLabel = 'B'
@@ -54,6 +58,8 @@ text(x = -28000, y = 15, PlotLabel, cex = 1.75, xpd = TRUE, pos = 2)
 load(paste0("simresults/change/results_file/result", parameters$ID[parameters$c_intra == 0.1 & parameters$f == 0.4][8]) )
 plotH(xax = TRUE)
 #ecotype labels
+text(c(rep(200000,4),115000,105000), c(5.5,4.5,3.5,2,9,5), tolower(as.roman(5:10)), xpd = TRUE, pos = 4)
+
 #text(c(rep(200000,4),79500,145500), c(5.2,4.25,3.3,2.1,5.4,4.5), letters[1:6], xpd = TRUE, pos = 4, font = 2)
 #label
 PlotLabel = 'C'

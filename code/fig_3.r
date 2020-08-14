@@ -53,7 +53,7 @@ plot_colscale(repDf2$h,
               colpal = rainbow(32), range = c(0,15),mar = c(4,0,8,2))
 
 plotMatrixCF(repDf2,"loss", range = c(0,100), gray.colors(10))
-mtext('F', adj = 0, cex = 1.5, at = -0.3, line = 1)
+mtext('C', adj = 0, cex = 1.5, at = -0.3, line = 1)
 mtext('stability of vegetation', adj = 0, cex = 1, at = 0, line = 1)
 
 plot_colscale(repDf2$loss, 

@@ -752,9 +752,9 @@ plot_colscale <- function(x, # data
   plot(NA,NA, ylab = "", xlab = "", type = "n", xaxt = "n", yaxt = "n", xlim = c(0,1), ylim = c(min,max))
   
   rect(xleft = c(0,0,0,0), 
-       ybottom = seq(min,max,max/n)[1:n],
+       ybottom = seq(min,max,length = 1+n)[1:n],
        xright = c(1,1,1,1),
-       ytop = seq(min,max,max/n)[1:n+1],
+       ytop = seq(min,max,length = 1+n)[1:n+1],
        col = colpal[1:n],
        border = NA
   )
@@ -786,22 +786,22 @@ plotH <- function (xax = FALSE) {
   hmaxi = 15
   #set graphical options
   
-  par(mar=c(1, 6, 3, 0))
   
+  par(mar=c(1, 6, 3, 0))
   plot(NA,NA, xlim = c(0,timesteps+5000), ylim = c(1.5,14.5), axes = F, ann = F)
   
-  axis(1,labels = NA, lwd = 1.5, cex.axis = 1.2)
-  axis(2, las = 1, at = seq(2,14,4), labels = seq(2,14,4), lwd = 1.5, cex.axis = 1.2)
+  axis(1,labels = NA, lwd = 1.5, cex.axis = 1)
+  axis(2, las = 1, at = seq(2,14,4), labels = seq(2,14,4), lwd = 1.5, cex.axis = 1)
   
-  mtext(side = 2, line = 2.5, text = expression(trait~values~(italic(h))), cex = 1.1)
+  mtext(side = 2, line = 2.5, text = expression(trait~values~(italic(h))), cex = 1)
   
   if (xax == TRUE) {
-    mtext(side = 1, line = 2.5, text = 'time (years)', cex = 1.1)
-    axis(1, cex = 2, lwd = 1.5, cex.axis = 1.2)
+    mtext(side = 1, line = 2.5, text = 'time (years)', cex = 1)
+    axis(1, cex = 2, lwd = 1.5, cex.axis = 1)
   }
   
   #add initial environment value
-  text(0,14,substitute(list(E[0] ~'='~ list(r)), list(r = result$parms$eo)), pos = 4, cex = 1.5)
+  text(0,13,substitute(list(E[0] ~'='~ list(r)), list(r = result$parms$eo)), pos = 4, cex = 1.5)
   
   h_unique <- lapply(result$h, unique)
   for(i in 1:length(h_unique)) {
@@ -831,11 +831,11 @@ plotRho  <- function () {
   plot(NA,NA,xlim = c(0, timesteps+5000), ylim = c(0, 0.9),
        axes = F, ann = F)#, type = 'n', xaxs = 'i', yaxs = 'i' )
   
-  axis(2, at = seq(0, 0.6, by = 0.2), las = 1, lwd = 1.5, cex.axis = 1.2)
-  axis(1, cex = 2, lwd = 1.5, cex.axis = 1.2)
+  axis(2, at = seq(0, 0.6, by = 0.2), las = 1, lwd = 1.5, cex.axis = 1)
+  axis(1, cex = 2, lwd = 1.5, cex.axis = 1)
   
-  mtext(side = 2, line = 2.5, adj = 1, text = expression(plant~cover~(rho ['+'])), cex = 1.1)
-  mtext(side = 1, line = 2.5, text = 'time (years)', cex = 1.1)
+  mtext(side = 2, line = 2.5, adj = 1, text = expression(plant~cover~(rho ['+'])), cex = 1)
+  mtext(side = 1, line = 2.5, text = 'time (years)', cex = 1)
   
   time = 2:(length(h_unique)+1)
   

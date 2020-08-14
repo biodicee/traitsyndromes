@@ -18,8 +18,9 @@ saveFolder <- "figures/"
 ##################
 
 #pdf(paste(saveFolder,"fig2.pdf",sep = ""),  width = 7, height = 9,  paper = "special")
-png(paste(saveFolder,"fig2.png",sep = ""), width = 7, height = 9, units = "in", res = 300)
+png(paste(saveFolder,"fig2.png",sep = ""), width = 8, height = 9, units = "in", res = 300)
  
+par(oma = c(0,1,0,0))
 layout(matrix(c(1, 3, 2, 3, 4, 6, 5, 6, 7,9,8,9), 6, 2, byrow = TRUE), widths=c(2, 0.5), heights = c(5, 4, 5, 4 ,5,4))
 
 #Evolution in constant environment E0 = 1.1
@@ -36,13 +37,12 @@ load('simresults/example/result3')
 #cat(paste0("$h = ", round(mean(eco_b),2), " \\pm ", round(sd(eco_b), 2), "$"))
 #cat(paste0("$h = ", round(mean(eco_c),2), " \\pm ", round(sd(eco_c), 2), "$"))
 
-
 plotH()
 #ecotype labels
 text(c(rep(200000,3),78000), c(10,6.7,5.1,5.7), tolower(as.roman(1:4)), xpd = TRUE, pos = 4)
 #label
 PlotLabel = 'A'
-text(x = -28000, y = 15, PlotLabel, cex = 1.75, xpd = TRUE, pos = 2)
+text(x = -32000, y = 15, PlotLabel, cex = 1.75, xpd = TRUE, pos = 2)
 plotRho()
 par(mar = c(0,0,6,1))
 plotMatH(result$h_final)
@@ -69,7 +69,7 @@ plotH()
 text(c(180000,rep(200000,3)), c(7.43,4.82,3.03,2.145), tolower(as.roman(5:8)), xpd = TRUE, pos = 4)
 #label
 PlotLabel = 'B'
-text(x = -28000, y = 15, PlotLabel, cex = 1.75, xpd = TRUE, pos = 2)
+text(x = -32000, y = 15, PlotLabel, cex = 1.75, xpd = TRUE, pos = 2)
 plotRho()
 par(mar = c(0,0,6,1))
 plotMatH(result$h_final)
@@ -86,7 +86,7 @@ plotH()
 text(c(rep(200000,1)), c(2.145), tolower(as.roman(9)), xpd = TRUE, pos = 4)
 #label
 PlotLabel = 'C'
-text(x = -28000, y = 15, PlotLabel, cex = 1.75, xpd = TRUE, pos = 2)
+text(x = -32000, y = 15, PlotLabel, cex = 1.75, xpd = TRUE, pos = 2)
 plotRho()
 par(mar = c(0,0,6,1))
 plotMatH(result$h_final)
