@@ -892,12 +892,12 @@ plotMatrixCF <- function(df,
                          steps = 10
                          ) {
   #matrix plot
-  par(mar = c(4,4,4,1))
+  par(mar = c(3,5,0.5,0.5))
   plot(NA, xlim = c(-0.02,1.01), ylim = c(-0.01,0.51), ann = FALSE, axes = FALSE)
-  mtext(side = 1, line = 2.5, expression(italic(f)))
-  mtext(side = 2, line = 2.5, expression(italic(c[l])))
+  #mtext(side = 1, line = 2.5, expression(italic(f)))
+  #mtext(side = 2, line = 2.5, expression(italic(c[l])))
   axis(1,at = seq(0,1,0.2))
-  axis(2,at = seq(0,0.5,0.1))
+  axis(2,at = seq(0,0.5,0.1), las = 1)
   
   colPlot <- highlight(df[,matrixVar], colrange = colpal, range = range, steps = steps)
  # if (matrixVar == "clus") colPlot <- highlight(log(df[ ,matrixVar]), colrange = colpal, range = )
