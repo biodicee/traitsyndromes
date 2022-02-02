@@ -19,9 +19,9 @@ The code directory contains a raw simulation code file `code/full_climate_change
 
 For running simulations, create a copy of that file in a subfolder of 'simresults', and edit the file accordingly. Pay particular attention to edit
 
-- target folder
+- target directory for output
 - simulation title
-- target parameters
+- target parameters 
 - set climate to `constant` or `change` scenario
 
 ### Simulation Results
@@ -39,7 +39,7 @@ Each figure is created by a standalone code file (in `code`-directory). The pdf 
 
 ### Manuscript
 
-A snapshot of the pre-submission manuscript is placed in the `manuscript` directory. 
+A snapshot of the pre-submission manuscript will be included in the `manuscript` directory upon acceptance of the journal. 
 
 ## CITE AS
 
