@@ -43,7 +43,7 @@ A snapshot of the pre-submission manuscript is placed in the `manuscript` direct
 
 ## CITE AS
 
-Schneider, F.D., Benateau, s., Rillo, M., Kéfi, S. (2020) Code repository for: Facilitation and the evolution of trait-syndromes in the Mediterranean vegetation
+Schneider, F.D., Benateau, s., Rillo, M., Kéfi, S. (2022) Code repository for: Facilitation and the evolution of trait-syndromes in the Mediterranean vegetation
 
 
 ## LICENSE
